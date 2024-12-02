@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to bottom right, #e0f7fa, #e0e7ff);
+            color: #333;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            color: #444;
+            text-align: center;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1em;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+            transform: scale(1.02);
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+            outline: none;
+            border-color: #00796b;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #00251a;
+            transform: scale(0.95);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            animation: zoomIn 1s ease-in;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis with Attention Visualization</h1>
+    <form method="POST">
+        <label for="review">Enter your review:</label><br>
+        <textarea id="review" name="review" required></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if sentiment %}
+    <h2>Predicted Sentiment: {{ sentiment }}</h2>
+    <h3>Attention Weights:</h3>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Attention Weights">
+    {% endif %}
+</body>
+</html>
